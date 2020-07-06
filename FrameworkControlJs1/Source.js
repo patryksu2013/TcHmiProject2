@@ -61,12 +61,12 @@
 
                     /** Attribute variables are initialized with undefined. The System will call the setter later. See "Attribute philosophy" above. */
                     this.__variableName = undefined;
-                    this.__variableValue = undefined;
+                    this.__variableValue = null;
                     this.__variableUnit = undefined;
-                    this.__limitHigh = undefined;
-                    this.__limitLow = undefined;
-                    this.__warnHigh = undefined;
-                    this.__warnLow = undefined;
+                    this.__limitHigh = null;
+                    this.__limitLow = null;
+                    this.__warnHigh = null;
+                    this.__warnLow = null;
                 }
                 /** 
                 * @description Is called during control initialize phase before attribute setter are called based on initial html dom values. 
@@ -82,11 +82,11 @@
                     this.__elementHover = this.__elementTemplateRoot.find(".hover_bkgr_fricc");
                     /** Popup elements*/
                     this.__elementTemplatePopup = this.__elementHover.find('.framework-control-js1-template-popup');
-                    this.__elementClosePopupButton = this.__elementTemplatePopup.find('.popupCloseButton');
-                    this.__elementHighLimitInputBox = this.__elementTemplatePopup.find('.high-limit-value');
-                    this.__elementLowLimitInputBox = this.__elementTemplatePopup.find('.low-limit-value');
-                    this.__elementHighWarningInputBox = this.__elementTemplatePopup.find('.high-warn-value');
-                    this.__elementLowWarningInputBox = this.__elementTemplatePopup.find('.low-warn-value');
+                    this.__elementPopupCloseButton = this.__elementTemplatePopup.find('.popupCloseButton');
+                    this.__elementLimitHighInputBox = this.__elementTemplatePopup.find('.high-limit-value');
+                    this.__elementLimitLowInputBox = this.__elementTemplatePopup.find('.low-limit-value');
+                    this.__elementWarningHighInputBox = this.__elementTemplatePopup.find('.high-warn-value');
+                    this.__elementWarningLowInputBox = this.__elementTemplatePopup.find('.low-warn-value');
                     
                     /** Call __previnit of super class with the correct instance. */
                     _super.prototype.__previnit.call(this);
@@ -216,7 +216,6 @@
                 
                     // call process function to process the new value
                     //this.__processValue();
-                    // document.getElementsByClassName("framework-control-js1-template-variable-value")[0].innerHTML = this.__variableValue;
                     this.__elementVariableValue[0].innerHTML = this.__variableValue;
                 };
 
@@ -295,7 +294,7 @@
                 
                     // call process function to process the new value
                     //this.__processValue();
-                    this.__elementHighLimitInputBox[0].value = this.__limitHigh;
+                    this.__elementLimitHighInputBox[0].value = this.__limitHigh;
                 };
 
                 /**
@@ -334,6 +333,7 @@
                 
                     // call process function to process the new value
                     //this.__processValue();
+                    this.__elementLimitLowInputBox[0].value = this.__limitLow;
                 };
 
                 /**
@@ -372,6 +372,7 @@
                 
                     // call process function to process the new value
                     //this.__processValue();
+                    this.__elementWarningHighInputBox[0].input = this.__warnHigh;
                 };
 
                 /**
@@ -410,6 +411,7 @@
                 
                     // call process function to process the new value
                     //this.__processValue();
+                    this.__elementWarningLowInputBox[0].input = this.__warnLow;
                 };
 
                 /**
@@ -421,10 +423,6 @@
                 };
 
                 loadSettings = function () {
-                    // this.__elementHighLimitInputBox[0].value = getLimitHigh();
-                    // this.__elementLowLimitInputBox[0].value = getLimitLow();
-                    // this.__elementHighWarningInputBox[0].value = getWarnHigh();
-                    // this.__elementLowWarningInputBox[0].value = getWarnLow();
                     console.log("działa odczyt");
                 };
 
