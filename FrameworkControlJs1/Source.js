@@ -74,6 +74,7 @@
                     this.__elementVariableName = this.__elementTemplateRoot.find('.framework-control-js1-template-variable-name');
                     this.__elementVariableValue = this.__elementTemplateRoot.find('.framework-control-js1-template-variable-value');
                     this.__elementVariableUnit = this.__elementTemplateRoot.find('.framework-control-js1-template-variable-unit');
+                    this.__elementSettingsButton = this.__elementTemplateRoot.find('.framework-control-js1-template-setup-button');
                     
                     /** Call __previnit of super class with the correct instance. */
                     _super.prototype.__previnit.call(this);
@@ -99,6 +100,12 @@
                     /**
                      * Initialize everything which is only available while the control is part of the active dom.
                      */
+                    this.__elementSettingsButton[0].addEventListener("click", function() {
+                        $('.hover_bkgr_fricc').show();
+                        $('.popupCloseButton').click(function(){
+                            $('.hover_bkgr_fricc').hide();
+                        });
+                    });
                 };
                 /**
                 * @description Is called after the control instance is no longer part of the current DOM.
@@ -246,6 +253,10 @@
                     return this.__variableUnit;
                 };
 
+                FrameworkControlJs1.prototype.showSettings = function () {
+                    console.log("działa");
+                };
+                
                 return FrameworkControlJs1;
             })(TcHmi.Controls.System.TcHmiControl);
             Custom.FrameworkControlJs1 = FrameworkControlJs1;

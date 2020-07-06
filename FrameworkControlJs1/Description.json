@@ -19,8 +19,8 @@
   "properties": {
     "containerControl": false,
     "geometry": {
-      "width": 150,
-      "height": 150
+      "width": 300,
+      "height": 50
     }
   },
   "icons": [
@@ -139,6 +139,78 @@
       "heritable": true,
       "defaultValue": "Variable unit",
       "defaultValueInternal": "Variable unit"
+    },
+    {
+      "name": "data-tchmi-limit-high",
+      "propertyName": "LimitHigh",
+      "propertySetterName": "setLimitHigh",
+      "propertyGetterName": "getLimitHigh",
+      "displayName": "LimitHigh",
+      "visible": false,
+      "themeable": "Standard",
+      "displayPriority": 10,
+      "type": "tchmi:general#/definitions/Any",
+      "category": "Value",
+      "description": "",
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "defaultValue": null,
+      "defaultValueInternal": null
+    },
+    {
+      "name": "data-tchmi-limit-low",
+      "propertyName": "LimitLow",
+      "propertySetterName": "setLimitLow",
+      "propertyGetterName": "getLimitLow",
+      "displayName": "LimitLow",
+      "visible": false,
+      "themeable": "Standard",
+      "displayPriority": 10,
+      "type": "tchmi:general#/definitions/Any",
+      "category": "Value",
+      "description": "",
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "defaultValue": null,
+      "defaultValueInternal": null
+    },
+    {
+      "name": "data-tchmi-warn-high",
+      "propertyName": "WarnHigh",
+      "propertySetterName": "setWarnHigh",
+      "propertyGetterName": "getWarnHigh",
+      "displayName": "WarnHigh",
+      "visible": false,
+      "themeable": "Standard",
+      "displayPriority": 10,
+      "type": "tchmi:general#/definitions/Any",
+      "category": "Value",
+      "description": "",
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "defaultValue": null,
+      "defaultValueInternal": null
+    },
+    {
+      "name": "data-tchmi-warn-low",
+      "propertyName": "WarnLow",
+      "propertySetterName": "setWarnLow",
+      "propertyGetterName": "getWarnLow",
+      "displayName": "WarnLow",
+      "visible": false,
+      "themeable": "Standard",
+      "displayPriority": 10,
+      "type": "tchmi:general#/definitions/Any",
+      "category": "Value",
+      "description": "",
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "defaultValue": null,
+      "defaultValueInternal": null
     }
   ],
   "attributeCategories": [],

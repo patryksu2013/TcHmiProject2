@@ -305,8 +305,7 @@
     <TcHmiReference Include="69cd333d-0b1e-4171-9164-57b04e67016f">
       <Type>FrameworkRefSolution</Type>
       <RelativePath>FrameworkControlJs1/FrameworkControlJs1.csproj</RelativePath>
-      <Domain>
-      </Domain>
+      <Domain></Domain>
     </TcHmiReference>
   </ItemGroup>
 </Project>
