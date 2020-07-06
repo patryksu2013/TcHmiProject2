@@ -60,9 +60,13 @@
                     _super.call(this, element, pcElement, attrs);
 
                     /** Attribute variables are initialized with undefined. The System will call the setter later. See "Attribute philosophy" above. */
-                    // this.__variableName = undefined;
-                    // this.__variableValue = undefined;
-                    // this.__variableUnit = undefined;
+                    this.__variableName = undefined;
+                    this.__variableValue = undefined;
+                    this.__variableUnit = undefined;
+                    this.__limitHigh = undefined;
+                    this.__limitLow = undefined;
+                    this.__warnHigh = undefined;
+                    this.__warnLow = undefined;
                 }
                 /** 
                 * @description Is called during control initialize phase before attribute setter are called based on initial html dom values. 
@@ -75,6 +79,14 @@
                     this.__elementVariableValue = this.__elementTemplateRoot.find('.framework-control-js1-template-variable-value');
                     this.__elementVariableUnit = this.__elementTemplateRoot.find('.framework-control-js1-template-variable-unit');
                     this.__elementSettingsButton = this.__elementTemplateRoot.find('.framework-control-js1-template-setup-button');
+                    this.__elementHover = this.__elementTemplateRoot.find(".hover_bkgr_fricc");
+                    /** Popup elements*/
+                    this.__elementTemplatePopup = this.__elementHover.find('.framework-control-js1-template-popup');
+                    this.__elementClosePopupButton = this.__elementTemplatePopup.find('.popupCloseButton');
+                    this.__elementHighLimitInputBox = this.__elementTemplatePopup.find('.high-limit-value');
+                    this.__elementLowLimitInputBox = this.__elementTemplatePopup.find('.low-limit-value');
+                    this.__elementHighWarningInputBox = this.__elementTemplatePopup.find('.high-warn-value');
+                    this.__elementLowWarningInputBox = this.__elementTemplatePopup.find('.low-warn-value');
                     
                     /** Call __previnit of super class with the correct instance. */
                     _super.prototype.__previnit.call(this);
@@ -101,8 +113,10 @@
                      * Initialize everything which is only available while the control is part of the active dom.
                      */
                     this.__elementSettingsButton[0].addEventListener("click", function() {
+                        loadSettings();
                         $('.hover_bkgr_fricc').show();
-                        $('.popupCloseButton').click(function(){
+                        $('.popupCloseButton').click(function() {
+                            saveSettings();
                             $('.hover_bkgr_fricc').hide();
                         });
                     });
@@ -181,7 +195,7 @@
                  */
                 FrameworkControlJs1.prototype.setVariableValue = function (valueNew) {
                     // convert the value with the value converter
-                    var convertedValue = TcHmi.ValueConverter.toString(valueNew);
+                    var convertedValue = TcHmi.ValueConverter.toNumber(valueNew);
                 
                     // check if the converted value is valid
                     if (convertedValue === null) {
@@ -253,8 +267,169 @@
                     return this.__variableUnit;
                 };
 
-                FrameworkControlJs1.prototype.showSettings = function () {
-                    console.log("działa");
+                /**
+                 * @description Setter function for 'data-tchmi-limit-high' attribute.
+                 * @param {Number} valueNew the new value or null 
+                 * @returns {void}
+                 */
+                FrameworkControlJs1.prototype.setLimitHigh = function (valueNew) {
+                    // convert the value with the value converter
+                    var convertedValue = TcHmi.ValueConverter.toNumber(valueNew);
+                
+                    // check if the converted value is valid
+                    if (convertedValue === null) {
+                        // if we have no value to set we have to fall back to the defaultValueInternal from description.json
+                        convertedValue = this.getAttributeDefaultValueInternal('LimitHigh');
+                    }
+                
+                    if (tchmi_equal(convertedValue, this.__limitHigh)) {
+                        // skip processing when the value has not changed
+                        return;
+                    }
+                
+                    // remember the new value
+                    this.__limitHigh = convertedValue;
+                
+                    // inform the system that the function has a changed result.
+                    TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getLimitHigh"]);
+                
+                    // call process function to process the new value
+                    //this.__processValue();
+                    this.__elementHighLimitInputBox[0].value = this.__limitHigh;
+                };
+
+                /**
+                 * @description Getter function for 'data-tchmi-limit-high' attribute.
+                 * @returns {Number}
+                 */
+                FrameworkControlJs1.prototype.getLimitHigh = function () {
+                    return this.__limitHigh;
+                };
+
+                /**
+                 * @description Setter function for 'data-tchmi-limit-low' attribute.
+                 * @param {Number} valueNew the new value or null 
+                 * @returns {void}
+                 */
+                FrameworkControlJs1.prototype.setLimitLow = function (valueNew) {
+                    // convert the value with the value converter
+                    var convertedValue = TcHmi.ValueConverter.toNumber(valueNew);
+                
+                    // check if the converted value is valid
+                    if (convertedValue === null) {
+                        // if we have no value to set we have to fall back to the defaultValueInternal from description.json
+                        convertedValue = this.getAttributeDefaultValueInternal('LimitLow');
+                    }
+                
+                    if (tchmi_equal(convertedValue, this.__limitLow)) {
+                        // skip processing when the value has not changed
+                        return;
+                    }
+                
+                    // remember the new value
+                    this.__limitLow = convertedValue;
+                
+                    // inform the system that the function has a changed result.
+                    TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getLimitLow"]);
+                
+                    // call process function to process the new value
+                    //this.__processValue();
+                };
+
+                /**
+                 * @description Getter function for 'data-tchmi-limit-low' attribute.
+                 * @returns {Number}
+                 */
+                FrameworkControlJs1.prototype.getLimitLow = function () {
+                    return this.__limitLow;
+                };
+
+                /**
+                 * @description Setter function for 'data-tchmi-warn-high' attribute.
+                 * @param {Number} valueNew the new value or null 
+                 * @returns {void}
+                 */
+                FrameworkControlJs1.prototype.setWarnHigh = function (valueNew) {
+                    // convert the value with the value converter
+                    var convertedValue = TcHmi.ValueConverter.toNumber(valueNew);
+                
+                    // check if the converted value is valid
+                    if (convertedValue === null) {
+                        // if we have no value to set we have to fall back to the defaultValueInternal from description.json
+                        convertedValue = this.getAttributeDefaultValueInternal('WarnHigh');
+                    }
+                
+                    if (tchmi_equal(convertedValue, this.__warnHigh)) {
+                        // skip processing when the value has not changed
+                        return;
+                    }
+                
+                    // remember the new value
+                    this.__warnHigh = convertedValue;
+                
+                    // inform the system that the function has a changed result.
+                    TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getWarnHigh"]);
+                
+                    // call process function to process the new value
+                    //this.__processValue();
+                };
+
+                /**
+                 * @description Getter function for 'data-tchmi-warn-high' attribute.
+                 * @returns {Number}
+                 */
+                FrameworkControlJs1.prototype.getWarnHigh = function () {
+                    return this.__warnHigh;
+                };
+
+                /**
+                 * @description Setter function for 'data-tchmi-warn-low' attribute.
+                 * @param {Number} valueNew the new value or null 
+                 * @returns {void}
+                 */
+                FrameworkControlJs1.prototype.setWarnLow = function (valueNew) {
+                    // convert the value with the value converter
+                    var convertedValue = TcHmi.ValueConverter.toNumber(valueNew);
+                
+                    // check if the converted value is valid
+                    if (convertedValue === null) {
+                        // if we have no value to set we have to fall back to the defaultValueInternal from description.json
+                        convertedValue = this.getAttributeDefaultValueInternal('WarnLow');
+                    }
+                
+                    if (tchmi_equal(convertedValue, this.__warnLow)) {
+                        // skip processing when the value has not changed
+                        return;
+                    }
+                
+                    // remember the new value
+                    this.__warnLow = convertedValue;
+                
+                    // inform the system that the function has a changed result.
+                    TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getWarnLow"]);
+                
+                    // call process function to process the new value
+                    //this.__processValue();
+                };
+
+                /**
+                 * @description Getter function for 'data-tchmi-warn-low' attribute.
+                 * @returns {Number}
+                 */
+                FrameworkControlJs1.prototype.getWarnLow = function () {
+                    return this.__warnLow;
+                };
+
+                loadSettings = function () {
+                    // this.__elementHighLimitInputBox[0].value = getLimitHigh();
+                    // this.__elementLowLimitInputBox[0].value = getLimitLow();
+                    // this.__elementHighWarningInputBox[0].value = getWarnHigh();
+                    // this.__elementLowWarningInputBox[0].value = getWarnLow();
+                    console.log("działa odczyt");
+                };
+
+                saveSettings = function () {
+                    console.log("działa zapis");
                 };
                 
                 return FrameworkControlJs1;

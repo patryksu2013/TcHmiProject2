@@ -45,7 +45,32 @@
   ],
   "userFunctions": [],
   "symbols": {
-    "internal": {}
+    "internal": {
+      "var1": {
+        "value": 1.0,
+        "type": "tchmi:general#/definitions/Number",
+        "persist": false,
+        "readonly": false
+      },
+      "var2": {
+        "value": 0.0,
+        "type": "tchmi:general#/definitions/Number",
+        "persist": false,
+        "readonly": false
+      },
+      "var3": {
+        "value": 0.0,
+        "type": "tchmi:general#/definitions/Number",
+        "persist": false,
+        "readonly": false
+      },
+      "var4": {
+        "value": 0.0,
+        "type": "tchmi:general#/definitions/Number",
+        "persist": false,
+        "readonly": false
+      }
+    }
   },
   "trigger": [],
   "actionTemplates": [],
