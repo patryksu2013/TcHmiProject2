@@ -63,6 +63,7 @@
                     this.__variableName = undefined;
                     this.__variableValue = null;
                     this.__variableUnit = undefined;
+                    this.__variableOffset = null;
                     this.__limitHigh = null;
                     this.__limitLow = null;
                     this.__warnHigh = null;
@@ -83,6 +84,7 @@
                     /** Popup elements*/
                     this.__elementTemplatePopup = this.__elementHover.find('.framework-control-js1-template-popup');
                     this.__elementPopupCloseButton = this.__elementTemplatePopup.find('.popupCloseButton');
+                    this.__elementVariableOffset = this.__elementTemplatePopup.find('.variable-offset-value');
                     this.__elementLimitHighInputBox = this.__elementTemplatePopup.find('.limit-high-value');
                     this.__elementLimitLowInputBox = this.__elementTemplatePopup.find('.limit-low-value');
                     this.__elementWarningHighInputBox = this.__elementTemplatePopup.find('.warn-high-value');
@@ -125,6 +127,10 @@
                         $('.hover_bkgr_fricc').hide();
                     });
 
+                    this.__elementVariableOffset.change(function () {
+                        $this.__onChangeVariableOffset(this, $this);
+                    });
+
                     this.__elementLimitHighInputBox.change(function () {
                         $this.__onChangeLimitHigh(this, $this);
                     });
@@ -142,9 +148,18 @@
                     });
                 };
 
+                FrameworkControlJs1.prototype.__onChangeVariableOffset = function (event, $this) {
+                    console.log("__onChangeVariableOffset");
+                    var value = parseFloat($this.__elementVariableOffset.val());
+
+                    $this.__variableOffset = value;
+
+                    TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getVariableOffset"]);
+                };
+
                 FrameworkControlJs1.prototype.__onChangeLimitHigh = function (event, $this) {
                     console.log("__onChangeLimitHigh");
-                    var value = $this.__elementLimitHighInputBox.val();
+                    var value = parseFloat($this.__elementLimitHighInputBox.val());
 
                     $this.__limitHigh = value;
 
@@ -153,7 +168,7 @@
 
                 FrameworkControlJs1.prototype.__onChangeLimitLow = function (event, $this) {
                     console.log("__onChangeLimitLow");
-                    var value = $this.__elementLimitLowInputBox.val();
+                    var value = parseFloat($this.__elementLimitLowInputBox.val());
 
                     $this.__limitLow = value;
 
@@ -162,7 +177,7 @@
 
                 FrameworkControlJs1.prototype.__onChangeWarningHigh = function (event, $this) {
                     console.log("__onChangeWarningHigh");
-                    var value = $this.__elementWarningHighInputBox.val();
+                    var value = parseFloat($this.__elementWarningHighInputBox.val());
 
                     $this.__warnHigh = value;
 
@@ -171,7 +186,7 @@
 
                 FrameworkControlJs1.prototype.__onChangeWarningLow = function (event, $this) {
                     console.log("__onChangeWarningLow");
-                    var value = $this.__elementWarningLowInputBox.val();
+                    var value = parseFloat($this.__elementWarningLowInputBox.val());
 
                     $this.__warnLow = value;
 
@@ -273,13 +288,12 @@
                 
                     // call process function to process the new value
                     this.__processValue();
-                    this.__elementVariableValue[0].innerHTML = this.__variableValue;
+                    this.__elementVariableValue[0].innerHTML = this.__variableValue + this.__variableOffset;
                 };
 
                 FrameworkControlJs1.prototype.__processValue = function () {
                     if ((this.__variableValue <= this.__limitLow) || (this.__variableValue >= this.__limitHigh)) {
                         console.log("limit");
-                        //.attr("background")
                         this.__elementTemplateRoot.css('background-color', 'red');
                     } else if ((this.__variableValue <= this.__limitLow && this.__variableValue >= this.__warnLow) || (this.__variableValue <= this.__limitHigh && this.__variableValue >= this.__warnHigh)) {
                         console.log("warning");
@@ -334,6 +348,45 @@
                  */
                 FrameworkControlJs1.prototype.getVariableUnit = function () {
                     return this.__variableUnit;
+                };
+
+                /**
+                 * @description Setter function for 'data-tchmi-variable-offset' attribute.
+                 * @param {Number} valueNew the new value or null 
+                 * @returns {void}
+                 */
+                FrameworkControlJs1.prototype.setVariableOffset = function (valueNew) {
+                    // convert the value with the value converter
+                    var convertedValue = TcHmi.ValueConverter.toNumber(valueNew);
+                
+                    // check if the converted value is valid
+                    if (convertedValue === null) {
+                        // if we have no value to set we have to fall back to the defaultValueInternal from description.json
+                        convertedValue = this.getAttributeDefaultValueInternal('VariableOffset');
+                    }
+                
+                    if (tchmi_equal(convertedValue, this.__variableOffset)) {
+                        // skip processing when the value has not changed
+                        return;
+                    }
+                
+                    // remember the new value
+                    this.__variableOffset = convertedValue;
+                
+                    // inform the system that the function has a changed result.
+                    TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getVariableOffset"]);
+                
+                    // call process function to process the new value
+                    //this.__processLimitHigh();
+                    this.__elementVariableOffset.attr("value", this.__variableOffset);
+                };
+
+                /**
+                 * @description Getter function for 'data-tchmi-variable-offset' attribute.
+                 * @returns {Number}
+                 */
+                FrameworkControlJs1.prototype.getVariableOffset = function () {
+                    return this.__variableOffset;
                 };
 
                 /**

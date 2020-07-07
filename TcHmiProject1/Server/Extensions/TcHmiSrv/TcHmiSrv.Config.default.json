@@ -1745,6 +1745,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.rVariableOffset": {
+            "ACCESS": 3,
+            "CUSTOMERDATA": "",
+            "DOMAIN": "ADS",
+            "MAPPING": "PLC1::MAIN::rVariableOffset",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.rWarningHigh": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",

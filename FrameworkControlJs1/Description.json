@@ -101,8 +101,8 @@
       "readOnly": false,
       "bindable": true,
       "heritable": true,
-      "defaultValue": "Variable name",
-      "defaultValueInternal": "Variable name"
+      "defaultValue": "",
+      "defaultValueInternal": ""
     },
     {
       "name": "data-tchmi-variable-value",
@@ -120,7 +120,7 @@
       "bindable": true,
       "heritable": true,
       "defaultValue": null,
-      "defaultValueInternal": null
+      "defaultValueInternal": 0
     },
     {
       "name": "data-tchmi-variable-unit",
@@ -137,8 +137,26 @@
       "readOnly": false,
       "bindable": true,
       "heritable": true,
-      "defaultValue": "Variable unit",
+      "defaultValue": "",
       "defaultValueInternal": "Variable unit"
+    },
+    {
+      "name": "data-tchmi-variable-offset",
+      "propertyName": "VariableOffset",
+      "propertySetterName": "setVariableOffset",
+      "propertyGetterName": "getVariableOffset",
+      "displayName": "VariableOffset",
+      "visible": true,
+      "themeable": "Standard",
+      "displayPriority": 10,
+      "type": "tchmi:general#/definitions/Number",
+      "category": "Value",
+      "description": "",
+      "readOnly": false,
+      "bindable": true,
+      "heritable": true,
+      "defaultValue": 0,
+      "defaultValueInternal": 0
     },
     {
       "name": "data-tchmi-limit-high",
@@ -156,7 +174,7 @@
       "bindable": true,
       "heritable": true,
       "defaultValue": null,
-      "defaultValueInternal": null
+      "defaultValueInternal": 0
     },
     {
       "name": "data-tchmi-limit-low",
@@ -174,7 +192,7 @@
       "bindable": true,
       "heritable": true,
       "defaultValue": null,
-      "defaultValueInternal": null
+      "defaultValueInternal": 0
     },
     {
       "name": "data-tchmi-warn-high",
@@ -192,7 +210,7 @@
       "bindable": true,
       "heritable": true,
       "defaultValue": null,
-      "defaultValueInternal": null
+      "defaultValueInternal": 0
     },
     {
       "name": "data-tchmi-warn-low",
@@ -210,7 +228,7 @@
       "bindable": true,
       "heritable": true,
       "defaultValue": null,
-      "defaultValueInternal": null
+      "defaultValueInternal": 0
     }
   ],
   "attributeCategories": [],

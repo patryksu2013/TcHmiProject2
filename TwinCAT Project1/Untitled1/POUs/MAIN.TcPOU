@@ -10,6 +10,7 @@ VAR
 	rAlarmLow : REAL := 0.0;
 	rWarningHigh : REAL := 0.9;
 	rWarningLow : REAL := 0.1;
+	rVariableOffset: REAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
