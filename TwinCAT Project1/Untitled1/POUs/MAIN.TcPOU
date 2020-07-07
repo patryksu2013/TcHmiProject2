@@ -4,7 +4,8 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	fbRand : DRAND;
-	rRandomValue : REAL;
+	lrRandomValue : LREAL;
+	rTemp : REAL;
 	rAlarmHigh : REAL := 1.0;
 	rAlarmLow : REAL := 0.0;
 	rWarningHigh : REAL := 0.9;
@@ -12,10 +13,12 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbRand(Seed := 0, Num => rRandomValue);]]></ST>
+      <ST><![CDATA[fbRand(Seed := 0, Num => lrRandomValue);
+rTemp := (LREAL_TO_REAL(lrRandomValue) * 100.0) - 50.0;]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
+      <LineId Id="12" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

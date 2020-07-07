@@ -1735,11 +1735,11 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.MAIN.rRandomValue": {
+        "PLC1.MAIN.rTemp": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
-            "MAPPING": "PLC1::MAIN::rRandomValue",
+            "MAPPING": "PLC1::MAIN::rTemp",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },

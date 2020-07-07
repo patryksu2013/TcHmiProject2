@@ -13,6 +13,58 @@
     height: 100%;
 }
 
+.framework-control-js1-template-variable-name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    text-align: center;
+}
+
+.framework-control-js1-template-variable-value {
+    position: absolute;
+    top: 0;
+    left: 30%;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    text-align: center;
+}
+
+.framework-control-js1-template-variable-unit {
+    position: absolute;
+    top: 0;
+    left: 60%;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    text-align: center;
+}
+
+.framework-control-js1-template-setup-button {
+    position: absolute;
+    top: 0;
+    left: 80%;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    text-align: center;
+}
+
 /* Popup box BEGIN */
 .hover_bkgr_fricc {
     background: rgba(0,0,0,.4);

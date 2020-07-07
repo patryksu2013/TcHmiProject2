@@ -117,11 +117,7 @@
 
                     $this = this
 
-                    this.__elementSettingsButton.on("click", function() {
-                        console.log("this");
-                        console.log(this);
-                        console.log("$this");
-                        console.log($this);
+                    this.__elementSettingsButton.click(function() {
                         $('.hover_bkgr_fricc').show();
                     });
 
@@ -130,17 +126,56 @@
                     });
 
                     this.__elementLimitHighInputBox.change(function () {
-                        $this.__onConfirmValue(this, $this);
+                        $this.__onChangeLimitHigh(this, $this);
+                    });
+
+                    this.__elementLimitLowInputBox.change(function () {
+                        $this.__onChangeLimitLow(this, $this);
+                    });
+
+                    this.__elementWarningHighInputBox.change(function () {
+                        $this.__onChangeWarningHigh(this, $this);
+                    });
+
+                    this.__elementWarningLowInputBox.change(function () {
+                        $this.__onChangeWarningLow(this, $this);
                     });
                 };
 
-                FrameworkControlJs1.prototype.__onConfirmValue = function (event, $this) {
-                    console.log("__onConfirmValue");
+                FrameworkControlJs1.prototype.__onChangeLimitHigh = function (event, $this) {
+                    console.log("__onChangeLimitHigh");
                     var value = $this.__elementLimitHighInputBox.val();
 
                     $this.__limitHigh = value;
 
                     TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getLimitHigh"]);
+                };
+
+                FrameworkControlJs1.prototype.__onChangeLimitLow = function (event, $this) {
+                    console.log("__onChangeLimitLow");
+                    var value = $this.__elementLimitLowInputBox.val();
+
+                    $this.__limitLow = value;
+
+                    TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getLimitLow"]);
+                };
+
+                FrameworkControlJs1.prototype.__onChangeWarningHigh = function (event, $this) {
+                    console.log("__onChangeWarningHigh");
+                    var value = $this.__elementWarningHighInputBox.val();
+
+                    $this.__warnHigh = value;
+
+                    TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getWarnHigh"]);
+                };
+
+                FrameworkControlJs1.prototype.__onChangeWarningLow = function (event, $this) {
+                    console.log("__onChangeWarningLow");
+                    var value = $this.__elementWarningLowInputBox.val();
+
+                    $this.__warnLow = value;
+
+                    TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getWarnLow"]);
                 };
                 
                 /**
@@ -171,34 +206,6 @@
                     */
                 };
 
-                // FrameworkControlJs1.prototype.__setLimitHigh = function (valueNew) {
-                //     console.log("to działa");
-                //     // convert the value with the value converter
-                //     var convertedValue = TcHmi.ValueConverter.toNumber(valueNew);
-                
-                //     // check if the converted value is valid
-                //     if (convertedValue === null) {
-                //         // if we have no value to set we have to fall back to the defaultValueInternal from description.json
-                //         convertedValue = this.getAttributeDefaultValueInternal('LimitHigh');
-                //     }
-                
-                //     if (tchmi_equal(convertedValue, this.__limitHigh)) {
-                //         // skip processing when the value has not changed
-                //         return;
-                //     }
-                
-                //     // remember the new value
-                //     this.__limitHigh = convertedValue;
-                
-                //     // inform the system that the function has a changed result.
-                //     TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getLimitHigh"]);
-                
-                //     // call process function to process the new value
-                //     console.log("wartość = " + this.__limitHigh);
-                //     document.getElementsByClassName("limit-high-value")[0].value = this.__limitHigh;
-                //     console.log("pole = " + document.getElementsByClassName("limit-high-value")[0].value);
-                // };
-
                 /**
                  * @description Setter function for 'data-tchmi-variable-name' attribute.
                  * @param {String} valueNew the new value or null 
@@ -227,7 +234,7 @@
                 
                     // call process function to process the new value
                     //this.__processValue();
-                    //this.__elementVariableName[0].innerHTML = this.__variableName;
+                    this.__elementVariableName[0].innerHTML = this.__variableName;
                 };
 
                 /**
@@ -265,8 +272,21 @@
                     TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getVariableValue"]);
                 
                     // call process function to process the new value
-                    //this.__processValue();
-                    //this.__elementVariableValue[0].innerHTML = this.__variableValue;
+                    this.__processValue();
+                    this.__elementVariableValue[0].innerHTML = this.__variableValue;
+                };
+
+                FrameworkControlJs1.prototype.__processValue = function () {
+                    if ((this.__variableValue <= this.__limitLow) || (this.__variableValue >= this.__limitHigh)) {
+                        console.log("limit");
+                        //.attr("background")
+                        this.__elementTemplateRoot.css('background-color', 'red');
+                    } else if ((this.__variableValue <= this.__limitLow && this.__variableValue >= this.__warnLow) || (this.__variableValue <= this.__limitHigh && this.__variableValue >= this.__warnHigh)) {
+                        console.log("warning");
+                        this.__elementTemplateRoot.css('background-color', 'yellow');
+                    } else {
+                        this.__elementTemplateRoot.css('background-color', '');
+                    }
                 };
 
                 /**
@@ -305,7 +325,7 @@
                 
                     // call process function to process the new value
                     //this.__processValue();
-                    //this.__elementVariableUnit[0].innerHTML = this.__variableUnit;
+                    this.__elementVariableUnit[0].innerHTML = this.__variableUnit;
                 };
 
                 /**
@@ -344,19 +364,14 @@
                 
                     // call process function to process the new value
                     //this.__processLimitHigh();
+                    this.__elementLimitHighInputBox.attr("value", this.__limitHigh);
                 };
-
-                // FrameworkControlJs1.prototype.__processLimitHigh = function () {
-                //     console.log("przed zapisem do pola wartość wynosi:" + this.__limitHigh);
-                //     this.__elementLimitHighInputBox.attr("value", this.__limitHigh);
-                // }
 
                 /**
                  * @description Getter function for 'data-tchmi-limit-high' attribute.
                  * @returns {Number}
                  */
                 FrameworkControlJs1.prototype.getLimitHigh = function () {
-                    //this.__elementLimitHighInputBox[0].value = this.__limitHigh;
                     return this.__limitHigh;
                 };
 
@@ -388,11 +403,8 @@
                 
                     // call process function to process the new value
                     //this.__processLimitLow();
+                    this.__elementLimitLowInputBox.attr("value", this.__limitLow);
                 };
-
-                // FrameworkControlJs1.prototype.__processLimitLow = function () {
-                //     this.__elementLimitLowInputBox.attr('value', this.__limitLow);
-                // }
 
                 /**
                  * @description Getter function for 'data-tchmi-limit-low' attribute.
@@ -430,11 +442,8 @@
                 
                     // call process function to process the new value
                     // this.__processWarnHigh();
+                    this.__elementWarningHighInputBox.attr("value", this.__warnHigh);
                 };
-
-                // FrameworkControlJs1.prototype.__processWarnHigh = function () {
-                //     this.__elementWarningHighInputBox.attr('value', this.__warnHigh);
-                // }
 
                 /**
                  * @description Getter function for 'data-tchmi-warn-high' attribute.
@@ -472,11 +481,8 @@
                 
                     // call process function to process the new value
                     // this.__processWarnLow();
+                    this.__elementWarningLowInputBox.attr("value", this.__warnLow);
                 };
-
-                // FrameworkControlJs1.prototype.__processWarnLow = function () {
-                //     this.__elementWarningLowInputBox.attr('value', this.__warnLow);
-                // }
 
                 /**
                  * @description Getter function for 'data-tchmi-warn-low' attribute.
@@ -484,14 +490,6 @@
                  */
                 FrameworkControlJs1.prototype.getWarnLow = function () {
                     return this.__warnLow;
-                };
-
-                loadSettings = function () {
-                    console.log("działa odczyt");
-                };
-
-                saveSettings = function () {
-                    console.log("działa zapis");
                 };
                 
                 return FrameworkControlJs1;
