@@ -83,10 +83,10 @@
                     /** Popup elements*/
                     this.__elementTemplatePopup = this.__elementHover.find('.framework-control-js1-template-popup');
                     this.__elementPopupCloseButton = this.__elementTemplatePopup.find('.popupCloseButton');
-                    this.__elementLimitHighInputBox = this.__elementTemplatePopup.find('.high-limit-value');
-                    this.__elementLimitLowInputBox = this.__elementTemplatePopup.find('.low-limit-value');
-                    this.__elementWarningHighInputBox = this.__elementTemplatePopup.find('.high-warn-value');
-                    this.__elementWarningLowInputBox = this.__elementTemplatePopup.find('.low-warn-value');
+                    this.__elementLimitHighInputBox = this.__elementTemplatePopup.find('.limit-high-value');
+                    this.__elementLimitLowInputBox = this.__elementTemplatePopup.find('.limit-low-value');
+                    this.__elementWarningHighInputBox = this.__elementTemplatePopup.find('.warn-high-value');
+                    this.__elementWarningLowInputBox = this.__elementTemplatePopup.find('.warn-low-value');
                     
                     /** Call __previnit of super class with the correct instance. */
                     _super.prototype.__previnit.call(this);
@@ -112,15 +112,37 @@
                     /**
                      * Initialize everything which is only available while the control is part of the active dom.
                      */
-                    this.__elementSettingsButton[0].addEventListener("click", function() {
-                        loadSettings();
+
+                    // Register event listener
+
+                    $this = this
+
+                    this.__elementSettingsButton.on("click", function() {
+                        console.log("this");
+                        console.log(this);
+                        console.log("$this");
+                        console.log($this);
                         $('.hover_bkgr_fricc').show();
-                        $('.popupCloseButton').click(function() {
-                            saveSettings();
-                            $('.hover_bkgr_fricc').hide();
-                        });
+                    });
+
+                    this.__elementPopupCloseButton.click(function() {
+                        $('.hover_bkgr_fricc').hide();
+                    });
+
+                    this.__elementLimitHighInputBox.change(function () {
+                        $this.__onConfirmValue(this, $this);
                     });
                 };
+
+                FrameworkControlJs1.prototype.__onConfirmValue = function (event, $this) {
+                    console.log("__onConfirmValue");
+                    var value = $this.__elementLimitHighInputBox.val();
+
+                    $this.__limitHigh = value;
+
+                    TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getLimitHigh"]);
+                };
+                
                 /**
                 * @description Is called after the control instance is no longer part of the current DOM.
                 * Is only allowed to be called from the framework itself!
@@ -148,6 +170,34 @@
                     * Free resources like child controls etc.
                     */
                 };
+
+                // FrameworkControlJs1.prototype.__setLimitHigh = function (valueNew) {
+                //     console.log("to działa");
+                //     // convert the value with the value converter
+                //     var convertedValue = TcHmi.ValueConverter.toNumber(valueNew);
+                
+                //     // check if the converted value is valid
+                //     if (convertedValue === null) {
+                //         // if we have no value to set we have to fall back to the defaultValueInternal from description.json
+                //         convertedValue = this.getAttributeDefaultValueInternal('LimitHigh');
+                //     }
+                
+                //     if (tchmi_equal(convertedValue, this.__limitHigh)) {
+                //         // skip processing when the value has not changed
+                //         return;
+                //     }
+                
+                //     // remember the new value
+                //     this.__limitHigh = convertedValue;
+                
+                //     // inform the system that the function has a changed result.
+                //     TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getLimitHigh"]);
+                
+                //     // call process function to process the new value
+                //     console.log("wartość = " + this.__limitHigh);
+                //     document.getElementsByClassName("limit-high-value")[0].value = this.__limitHigh;
+                //     console.log("pole = " + document.getElementsByClassName("limit-high-value")[0].value);
+                // };
 
                 /**
                  * @description Setter function for 'data-tchmi-variable-name' attribute.
@@ -177,7 +227,7 @@
                 
                     // call process function to process the new value
                     //this.__processValue();
-                    this.__elementVariableName[0].innerHTML = this.__variableName;
+                    //this.__elementVariableName[0].innerHTML = this.__variableName;
                 };
 
                 /**
@@ -216,7 +266,7 @@
                 
                     // call process function to process the new value
                     //this.__processValue();
-                    this.__elementVariableValue[0].innerHTML = this.__variableValue;
+                    //this.__elementVariableValue[0].innerHTML = this.__variableValue;
                 };
 
                 /**
@@ -255,7 +305,7 @@
                 
                     // call process function to process the new value
                     //this.__processValue();
-                    this.__elementVariableUnit[0].innerHTML = this.__variableUnit;
+                    //this.__elementVariableUnit[0].innerHTML = this.__variableUnit;
                 };
 
                 /**
@@ -293,15 +343,20 @@
                     TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getLimitHigh"]);
                 
                     // call process function to process the new value
-                    //this.__processValue();
-                    this.__elementLimitHighInputBox[0].value = this.__limitHigh;
+                    //this.__processLimitHigh();
                 };
+
+                // FrameworkControlJs1.prototype.__processLimitHigh = function () {
+                //     console.log("przed zapisem do pola wartość wynosi:" + this.__limitHigh);
+                //     this.__elementLimitHighInputBox.attr("value", this.__limitHigh);
+                // }
 
                 /**
                  * @description Getter function for 'data-tchmi-limit-high' attribute.
                  * @returns {Number}
                  */
                 FrameworkControlJs1.prototype.getLimitHigh = function () {
+                    //this.__elementLimitHighInputBox[0].value = this.__limitHigh;
                     return this.__limitHigh;
                 };
 
@@ -332,9 +387,12 @@
                     TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getLimitLow"]);
                 
                     // call process function to process the new value
-                    //this.__processValue();
-                    this.__elementLimitLowInputBox[0].value = this.__limitLow;
+                    //this.__processLimitLow();
                 };
+
+                // FrameworkControlJs1.prototype.__processLimitLow = function () {
+                //     this.__elementLimitLowInputBox.attr('value', this.__limitLow);
+                // }
 
                 /**
                  * @description Getter function for 'data-tchmi-limit-low' attribute.
@@ -371,9 +429,12 @@
                     TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getWarnHigh"]);
                 
                     // call process function to process the new value
-                    //this.__processValue();
-                    this.__elementWarningHighInputBox[0].input = this.__warnHigh;
+                    // this.__processWarnHigh();
                 };
+
+                // FrameworkControlJs1.prototype.__processWarnHigh = function () {
+                //     this.__elementWarningHighInputBox.attr('value', this.__warnHigh);
+                // }
 
                 /**
                  * @description Getter function for 'data-tchmi-warn-high' attribute.
@@ -410,9 +471,12 @@
                     TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getWarnLow"]);
                 
                     // call process function to process the new value
-                    //this.__processValue();
-                    this.__elementWarningLowInputBox[0].input = this.__warnLow;
+                    // this.__processWarnLow();
                 };
+
+                // FrameworkControlJs1.prototype.__processWarnLow = function () {
+                //     this.__elementWarningLowInputBox.attr('value', this.__warnLow);
+                // }
 
                 /**
                  * @description Getter function for 'data-tchmi-warn-low' attribute.
