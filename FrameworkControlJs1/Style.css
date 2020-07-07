@@ -63,6 +63,9 @@
     align-items: center;
     font-size: 14px;
     text-align: center;
+    background-image: linear-gradient(135deg, #eff1f3, #aeb9c2);
+    color: #4794da;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.6);
 }
 
 /* Popup box BEGIN */
