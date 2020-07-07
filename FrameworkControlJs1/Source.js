@@ -288,15 +288,17 @@
                 
                     // call process function to process the new value
                     this.__processValue();
-                    this.__elementVariableValue[0].innerHTML = this.__variableValue + this.__variableOffset;
+                    var value = this.__variableValue + this.__variableOffset;
+                    this.__elementVariableValue[0].innerHTML = value;
                 };
 
                 FrameworkControlJs1.prototype.__processValue = function () {
-                    if ((this.__variableValue <= this.__limitLow) || (this.__variableValue >= this.__limitHigh)) {
-                        console.log("limit");
+                    var value = this.__variableValue + this.__variableOffset;
+                    if ((value <= this.__limitLow) || (value >= this.__limitHigh)) {
+                        //console.log("limit");
                         this.__elementTemplateRoot.css('background-color', 'red');
-                    } else if ((this.__variableValue <= this.__limitLow && this.__variableValue >= this.__warnLow) || (this.__variableValue <= this.__limitHigh && this.__variableValue >= this.__warnHigh)) {
-                        console.log("warning");
+                    } else if ((value <= this.__limitLow && value >= this.__warnLow) || (value <= this.__limitHigh && value >= this.__warnHigh)) {
+                        //console.log("warning");
                         this.__elementTemplateRoot.css('background-color', 'yellow');
                     } else {
                         this.__elementTemplateRoot.css('background-color', '');
