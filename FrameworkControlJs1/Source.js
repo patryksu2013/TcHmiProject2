@@ -149,7 +149,6 @@
                 };
 
                 FrameworkControlJs1.prototype.__onChangeVariableOffset = function (event, $this) {
-                    console.log("__onChangeVariableOffset");
                     var value = parseFloat($this.__elementVariableOffset.val());
 
                     $this.__variableOffset = value;
@@ -158,7 +157,6 @@
                 };
 
                 FrameworkControlJs1.prototype.__onChangeLimitHigh = function (event, $this) {
-                    console.log("__onChangeLimitHigh");
                     var value = parseFloat($this.__elementLimitHighInputBox.val());
 
                     $this.__limitHigh = value;
@@ -167,7 +165,6 @@
                 };
 
                 FrameworkControlJs1.prototype.__onChangeLimitLow = function (event, $this) {
-                    console.log("__onChangeLimitLow");
                     var value = parseFloat($this.__elementLimitLowInputBox.val());
 
                     $this.__limitLow = value;
@@ -176,7 +173,6 @@
                 };
 
                 FrameworkControlJs1.prototype.__onChangeWarningHigh = function (event, $this) {
-                    console.log("__onChangeWarningHigh");
                     var value = parseFloat($this.__elementWarningHighInputBox.val());
 
                     $this.__warnHigh = value;
@@ -185,7 +181,6 @@
                 };
 
                 FrameworkControlJs1.prototype.__onChangeWarningLow = function (event, $this) {
-                    console.log("__onChangeWarningLow");
                     var value = parseFloat($this.__elementWarningLowInputBox.val());
 
                     $this.__warnLow = value;
@@ -295,13 +290,11 @@
                 FrameworkControlJs1.prototype.__processValue = function () {
                     var value = this.__variableValue + this.__variableOffset;
                     if ((value <= this.__limitLow) || (value >= this.__limitHigh)) {
-                        //console.log("limit");
                         this.__elementVariableValue.css('background-color', 'red');
                     } else if ((value <= this.__limitLow && value >= this.__warnLow) || (value <= this.__limitHigh && value >= this.__warnHigh)) {
-                        //console.log("warning");
                         this.__elementVariableValue.css('background-color', 'yellow');
                     } else {
-                        this.__elementVariableValue.css('background-color', 'white');
+                        this.__elementVariableValue.css('background-color', '');
                     }
                 };
 
@@ -380,7 +373,6 @@
                 
                     // call process function to process the new value
                     //this.__processLimitHigh();
-                    console.log(this.__variableOffset);
                     this.__elementVariableOffset[0].value = this.__variableOffset.toFixed(2);
                 };
 
