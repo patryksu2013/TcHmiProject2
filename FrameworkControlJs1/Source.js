@@ -289,7 +289,7 @@
                     // call process function to process the new value
                     this.__processValue();
                     var value = this.__variableValue + this.__variableOffset;
-                    this.__elementVariableValue[0].innerHTML = value;
+                    this.__elementVariableValue[0].innerHTML = value.toFixed(2);
                 };
 
                 FrameworkControlJs1.prototype.__processValue = function () {
