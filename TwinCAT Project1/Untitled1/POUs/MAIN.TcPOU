@@ -6,10 +6,10 @@ VAR
 	fbRand : DRAND;
 	lrRandomValue : LREAL;
 	rTemp : REAL;
-	rAlarmHigh : REAL := 1.0;
-	rAlarmLow : REAL := 0.0;
-	rWarningHigh : REAL := 0.9;
-	rWarningLow : REAL := 0.1;
+	rAlarmHigh : REAL := 40.0;
+	rAlarmLow : REAL := -40.0;
+	rWarningHigh : REAL := 30.0;
+	rWarningLow : REAL := -30.0;
 	rVariableOffset: REAL;
 END_VAR
 ]]></Declaration>

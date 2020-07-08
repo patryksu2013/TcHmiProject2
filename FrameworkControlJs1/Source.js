@@ -380,7 +380,8 @@
                 
                     // call process function to process the new value
                     //this.__processLimitHigh();
-                    this.__elementVariableOffset.attr("value", this.__variableOffset);
+                    console.log(this.__variableOffset);
+                    this.__elementVariableOffset[0].value = this.__variableOffset.toFixed(2);
                 };
 
                 /**
@@ -419,7 +420,7 @@
                 
                     // call process function to process the new value
                     //this.__processLimitHigh();
-                    this.__elementLimitHighInputBox.attr("value", this.__limitHigh);
+                    this.__elementLimitHighInputBox[0].value = this.__limitHigh.toFixed(2);
                 };
 
                 /**
@@ -458,7 +459,7 @@
                 
                     // call process function to process the new value
                     //this.__processLimitLow();
-                    this.__elementLimitLowInputBox.attr("value", this.__limitLow);
+                    this.__elementLimitLowInputBox[0].value = this.__limitLow.toFixed(2);
                 };
 
                 /**
@@ -497,7 +498,7 @@
                 
                     // call process function to process the new value
                     // this.__processWarnHigh();
-                    this.__elementWarningHighInputBox.attr("value", this.__warnHigh);
+                    this.__elementWarningHighInputBox[0].value = this.__warnHigh.toFixed(2);
                 };
 
                 /**
@@ -536,7 +537,7 @@
                 
                     // call process function to process the new value
                     // this.__processWarnLow();
-                    this.__elementWarningLowInputBox.attr("value", this.__warnLow);
+                    this.__elementWarningLowInputBox[0].value = this.__warnLow.toFixed(2);
                 };
 
                 /**
