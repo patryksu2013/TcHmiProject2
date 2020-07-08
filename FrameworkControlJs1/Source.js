@@ -296,12 +296,12 @@
                     var value = this.__variableValue + this.__variableOffset;
                     if ((value <= this.__limitLow) || (value >= this.__limitHigh)) {
                         //console.log("limit");
-                        this.__elementTemplateRoot.css('background-color', 'red');
+                        this.__elementVariableValue.css('background-color', 'red');
                     } else if ((value <= this.__limitLow && value >= this.__warnLow) || (value <= this.__limitHigh && value >= this.__warnHigh)) {
                         //console.log("warning");
-                        this.__elementTemplateRoot.css('background-color', 'yellow');
+                        this.__elementVariableValue.css('background-color', 'yellow');
                     } else {
-                        this.__elementTemplateRoot.css('background-color', '');
+                        this.__elementVariableValue.css('background-color', 'white');
                     }
                 };
 

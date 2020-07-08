@@ -64,6 +64,11 @@
           "name": "Themes/Base/Style.css",
           "type": "Stylesheet",
           "description": "Theme dependent style"
+        },
+        {
+          "name": "Themes/Base/Images/settings_icon.svg",
+          "type": "Stylesheet",
+          "description": ""
         }
       ]
     }
