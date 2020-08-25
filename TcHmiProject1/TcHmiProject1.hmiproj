@@ -13,7 +13,7 @@
     <HmiVerboseLevel>2</HmiVerboseLevel>
     <HmiVersion>1.0.0.0</HmiVersion>
     <Name>TcHmiProject1</Name>
-    <HmiCommunicationRouterPort>10103</HmiCommunicationRouterPort>
+    <HmiCommunicationRouterPort>10104</HmiCommunicationRouterPort>
     <HmiCommunicationServerPort>3001</HmiCommunicationServerPort>
     <HmiInitial>1.10.1336.404</HmiInitial>
     <HmiRecent>1.12.742.0</HmiRecent>
@@ -211,6 +211,7 @@
     <Folder Include="Imports" />
     <Folder Include="Imports\Images" />
     <Folder Include="Imports\Videos" />
+    <Folder Include="KeyboardLayouts\" />
     <Folder Include="Localization" />
     <Folder Include="Server\ADS" />
     <Folder Include="Server\TcHmiEventLogger" />
@@ -421,6 +422,7 @@
       <SubType>Content</SubType>
       <Visible>true</Visible>
     </Content>
+    <Folder Include="Themes\Base\Images\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FrameworkControlJs1\FrameworkControlJs1.hmiextproj">
