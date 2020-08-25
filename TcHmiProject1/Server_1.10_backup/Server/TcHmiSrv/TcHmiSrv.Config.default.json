@@ -1715,6 +1715,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.lrRandomValue": {
+            "ACCESS": 3,
+            "CUSTOMERDATA": "",
+            "DOMAIN": "ADS",
+            "MAPPING": "PLC1::MAIN::lrRandomValue",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/LREAL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.rAlarmHigh": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",

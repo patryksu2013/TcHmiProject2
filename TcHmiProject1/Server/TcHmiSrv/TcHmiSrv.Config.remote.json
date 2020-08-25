@@ -1,0 +1,17 @@
+{
+    "CERTIFICATEEXPIRATION": "P365D",
+    "REQUIREAUTH": 2,
+    "VIRTUALDIRECTORIES": {
+        "/": "C:\\Users\\Patryk\\Source\\Repos\\patryksu2013\\TcHmiProject2\\TcHmiProject1",
+        "/Beckhoff.TwinCAT.HMI.Controls": "C:\\Users\\Patryk\\Source\\Repos\\patryksu2013\\TcHmiProject2\\Packages\\Beckhoff.TwinCAT.HMI.Controls.12.742.0\\runtimes\\native1.12-tchmi",
+        "/Beckhoff.TwinCAT.HMI.EventLogger": "C:\\Users\\Patryk\\Source\\Repos\\patryksu2013\\TcHmiProject2\\Packages\\Beckhoff.TwinCAT.HMI.EventLogger.12.742.0",
+        "/Beckhoff.TwinCAT.HMI.Functions": "C:\\Users\\Patryk\\Source\\Repos\\patryksu2013\\TcHmiProject2\\Packages\\Beckhoff.TwinCAT.HMI.Functions.12.742.0\\runtimes\\native1.12-tchmi",
+        "/Beckhoff.TwinCAT.HMI.RecipeManagement": "C:\\Users\\Patryk\\Source\\Repos\\patryksu2013\\TcHmiProject2\\Packages\\Beckhoff.TwinCAT.HMI.RecipeManagement.12.742.0",
+        "/Beckhoff.TwinCAT.HMI.SqliteHistorize": "C:\\Users\\Patryk\\Source\\Repos\\patryksu2013\\TcHmiProject2\\Packages\\Beckhoff.TwinCAT.HMI.SqliteHistorize.12.742.0",
+        "/FrameworkControlJs1": "C:\\Users\\Patryk\\Source\\Repos\\patryksu2013\\TcHmiProject2\\FrameworkControlJs1",
+        "/bin": "C:\\Users\\Patryk\\Source\\Repos\\patryksu2013\\TcHmiProject2\\TcHmiProject1\\bin\\",
+        "/bin/framework": "C:\\Users\\Patryk\\Source\\Repos\\patryksu2013\\TcHmiProject2\\TcHmiProject1\\bin\\framework",
+        "/framework": "C:\\Users\\Patryk\\Source\\Repos\\patryksu2013\\TcHmiProject2\\Packages\\Beckhoff.TwinCAT.HMI.Framework.12.742.0\\runtimes\\native1.12-tchmi",
+        "/framework/Controls/Custom/FrameworkControlJs1": "..\\..\\FrameworkControlJs1"
+    }
+}

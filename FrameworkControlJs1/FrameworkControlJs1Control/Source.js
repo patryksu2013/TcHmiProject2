@@ -68,6 +68,7 @@
                     this.__limitLow = null;
                     this.__warnHigh = null;
                     this.__warnLow = null;
+                    this.__decimalPlaces = null;
                 }
                 /** 
                 * @description Is called during control initialize phase before attribute setter are called based on initial html dom values. 
@@ -284,7 +285,7 @@
                     // call process function to process the new value
                     this.__processValue();
                     var value = this.__variableValue + this.__variableOffset;
-                    this.__elementVariableValue[0].innerHTML = value.toFixed(2);
+                    this.__elementVariableValue[0].innerHTML = value.toFixed(this.__decimalPlaces);
                 };
 
                 FrameworkControlJs1.prototype.__processValue = function () {
@@ -373,7 +374,7 @@
                 
                     // call process function to process the new value
                     //this.__processLimitHigh();
-                    this.__elementVariableOffset[0].value = this.__variableOffset.toFixed(2);
+                    this.__elementVariableOffset[0].value = this.__variableOffset.toFixed(this.__decimalPlaces);
                 };
 
                 /**
@@ -412,7 +413,7 @@
                 
                     // call process function to process the new value
                     //this.__processLimitHigh();
-                    this.__elementLimitHighInputBox[0].value = this.__limitHigh.toFixed(2);
+                    this.__elementLimitHighInputBox[0].value = this.__limitHigh.toFixed(this.__decimalPlaces);
                 };
 
                 /**
@@ -451,7 +452,7 @@
                 
                     // call process function to process the new value
                     //this.__processLimitLow();
-                    this.__elementLimitLowInputBox[0].value = this.__limitLow.toFixed(2);
+                    this.__elementLimitLowInputBox[0].value = this.__limitLow.toFixed(this.__decimalPlaces);
                 };
 
                 /**
@@ -490,7 +491,7 @@
                 
                     // call process function to process the new value
                     // this.__processWarnHigh();
-                    this.__elementWarningHighInputBox[0].value = this.__warnHigh.toFixed(2);
+                    this.__elementWarningHighInputBox[0].value = this.__warnHigh.toFixed(this.__decimalPlaces);
                 };
 
                 /**
@@ -529,7 +530,7 @@
                 
                     // call process function to process the new value
                     // this.__processWarnLow();
-                    this.__elementWarningLowInputBox[0].value = this.__warnLow.toFixed(2);
+                    this.__elementWarningLowInputBox[0].value = this.__warnLow.toFixed(this.__decimalPlaces);
                 };
 
                 /**
@@ -538,6 +539,44 @@
                  */
                 FrameworkControlJs1.prototype.getWarnLow = function () {
                     return this.__warnLow;
+                };
+
+                /**
+                 * @description Setter function for 'data-tchmi-decimal-numbers' attribute.
+                 * @param {Number} valueNew the new value or null 
+                 * @returns {void}
+                 */
+                FrameworkControlJs1.prototype.setDecimalPlaces = function (valueNew) {
+                    // convert the value with the value converter
+                    var convertedValue = TcHmi.ValueConverter.toNumber(valueNew);
+                
+                    // check if the converted value is valid
+                    if (convertedValue === null) {
+                        // if we have no value to set we have to fall back to the defaultValueInternal from description.json
+                        convertedValue = this.getAttributeDefaultValueInternal('DecimalPlaces');
+                    }
+                
+                    if (tchmi_equal(convertedValue, this.__decimalPlaces)) {
+                        // skip processing when the value has not changed
+                        return;
+                    }
+                
+                    // remember the new value
+                    this.__decimalPlaces = convertedValue;
+                
+                    // inform the system that the function has a changed result.
+                    TcHmi.EventProvider.raise(this.__id + ".onFunctionResultChanged", ["getDecimalPlaces"]);
+                
+                    // call process function to process the new value
+                    // this.__processDecimalPlaces();
+                };
+
+                /**
+                 * @description Getter function for 'data-tchmi-decimal-numbers' attribute.
+                 * @returns {Number}
+                 */
+                FrameworkControlJs1.prototype.getDecimalPlaces = function () {
+                    return this.__decimalPlaces;
                 };
                 
                 return FrameworkControlJs1;

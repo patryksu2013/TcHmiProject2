@@ -234,6 +234,24 @@
       "heritable": true,
       "defaultValue": null,
       "defaultValueInternal": 0
+    },
+    {
+      "name": "data-tchmi-decimal-places",
+      "propertyName": "DecimalPlaces",
+      "propertySetterName": "setDecimalPlaces",
+      "propertyGetterName": "getDecimalPlaces",
+      "displayName": "DecimalPlaces",
+      "visible": true,
+      "themeable": "Standard",
+      "displayPriority": 10,
+      "type": "tchmi:framework#/definitions/DecimalPlaces",
+      "category": "Value",
+      "description": "",
+      "readOnly": false,
+      "bindable": false,
+      "heritable": true,
+      "defaultValue": 2,
+      "defaultValueInternal": 2
     }
   ],
   "attributeCategories": [],
@@ -243,6 +261,10 @@
     {
       "name": "tchmi:framework#/definitions/FrameworkControlJs1",
       "schema": "Schema/TypeDefinitions/FrameworkControlJs1.Schema.json"
+    },
+    {
+      "name": "tchmi:framework#/definitions/DecimalPlaces",
+      "schema": "Schema/TypeDefinitions/DecimalPlaces.Schema.json"
     }
   ]
 }

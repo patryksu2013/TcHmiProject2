@@ -1,4 +1,4 @@
-﻿<div id="Desktop" data-tchmi-type="tchmi-view"
+﻿<div id="Desktop" data-tchmi-type="TcHmi.Controls.System.TcHmiView"
      data-tchmi-top="0" data-tchmi-left="0"
      data-tchmi-width-mode="Content"
      data-tchmi-min-width="100" data-tchmi-min-width-unit="%"
@@ -8,14 +8,18 @@
      data-tchmi-background-image-height="100" data-tchmi-background-image-width="100"
      data-tchmi-background-image-height-unit="%" data-tchmi-background-image-width-unit="%">
 
-  <div id="ViewDesktopBeckhoffLogo" data-tchmi-type="tchmi-image" 
+  <div id="ViewDesktopBeckhoffLogo" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiImage" 
        data-tchmi-src="Images/Beckhoff_Logo.svg"
        data-tchmi-left="20" data-tchmi-top="20" 
        data-tchmi-width="194" data-tchmi-height="57">
 
   </div>
 
-<div id="FrameworkControlJs1" data-tchmi-type="framework-control-js1" data-tchmi-height="98" data-tchmi-height-unit="px" data-tchmi-left="20" data-tchmi-left-unit="px" data-tchmi-top="87" data-tchmi-top-unit="px" data-tchmi-variable-name="rTemp" data-tchmi-variable-unit="°C" data-tchmi-width="583" data-tchmi-width-unit="px" data-tchmi-limit-high="%s%PLC1.MAIN.rAlarmHigh|BindingMode=TwoWay%/s%" data-tchmi-limit-low="%s%PLC1.MAIN.rAlarmLow|BindingMode=TwoWay%/s%" data-tchmi-warn-high="%s%PLC1.MAIN.rWarningHigh|BindingMode=TwoWay%/s%" data-tchmi-warn-low="%s%PLC1.MAIN.rWarningLow|BindingMode=TwoWay%/s%" data-tchmi-variable-value="%s%PLC1.MAIN.rTemp%/s%" data-tchmi-variable-offset="%s%PLC1.MAIN.rVariableOffset|BindingMode=TwoWay%/s%" data-tchmi-width-mode="Value" data-tchmi-height-mode="Value">
+<div id="FrameworkControlJs1" data-tchmi-type="framework-control-js1" data-tchmi-height="98" data-tchmi-height-unit="px" data-tchmi-left="20" data-tchmi-left-unit="px" data-tchmi-top="87" data-tchmi-top-unit="px" data-tchmi-variable-name="rTemp" data-tchmi-variable-unit="°C" data-tchmi-width="583" data-tchmi-width-unit="px" data-tchmi-limit-high="%s%PLC1.MAIN.rAlarmHigh|BindingMode=TwoWay%/s%" data-tchmi-limit-low="%s%PLC1.MAIN.rAlarmLow|BindingMode=TwoWay%/s%" data-tchmi-warn-high="%s%PLC1.MAIN.rWarningHigh|BindingMode=TwoWay%/s%" data-tchmi-warn-low="%s%PLC1.MAIN.rWarningLow|BindingMode=TwoWay%/s%" data-tchmi-variable-value="%s%PLC1.MAIN.rTemp%/s%" data-tchmi-variable-offset="%s%PLC1.MAIN.rVariableOffset|BindingMode=TwoWay%/s%" data-tchmi-width-mode="Value" data-tchmi-height-mode="Value" data-tchmi-decimal-numbers="3">
+
+</div>
+
+<div id="TcHmiTextblock" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="20" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MAIN.lrRandomValue%/s%" data-tchmi-top="195" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="True">
 
 </div>
 

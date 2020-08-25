@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>FrameworkControlJs1</id>
+    <version>1.0.0</version>
+    <description>-.-</description>
+    <authors>Patryk</authors>
+    <title>FrameworkControlJs1</title>
+    <owners>Patryk</owners>
+    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2020</copyright>
+    <tags>TwinCAT HMI</tags>
+    <dependencies>
+      <group targetFramework="native1.12-tchmi" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="**\*" target="runtimes\native1.12-tchmi\" exclude="**\*.nuspec;**\*.hmi*proj;**\~*;**\*.tmp;**\tmp*;**\*.user;**\tsconfig.json;**\*.log;**\*.bak;**\obj\**\*;**\.hmiframework\*;**\.hmiframework\**\*;**\.hmipkgs\**\*;packages.config;packages.xsd;.hmiframework\**\*" />
+  </files>
+</package>
